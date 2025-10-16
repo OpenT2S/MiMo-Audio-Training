@@ -1,0 +1,27 @@
+[
+    [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Transcribe the following voice message."
+                },
+                {
+                    "type": "audio",
+                    "audio": "OpenSLR/LibriSpeech/proc/wav/train-clean-360/1027/125140/1027-125140-0038.wav"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "thinking": false,
+            "content": [
+                {
+                    "type": "text",
+                    "text": "I further named to my husband that it was comforting to think that how the poor boy would be benefited by john's own money, and Protected from john's own forlornness hear hear cried mister boffin so she did."
+                }
+            ]
+        }
+    ]
+]

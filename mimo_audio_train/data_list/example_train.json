@@ -1,0 +1,27 @@
+[
+    [
+        {
+            "role": "user",
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Transcribe the following voice message."
+                },
+                {
+                    "type": "audio",
+                    "audio": "OpenSLR/LibriSpeech/proc/wav/train-clean-360/100/121669/100-121669-0000.wav"
+                }
+            ]
+        },
+        {
+            "role": "assistant",
+            "thinking": false,
+            "content": [
+                {
+                    "type": "text",
+                    "text": "Tom the piper's son."
+                }
+            ]
+        }
+    ]
+]
