@@ -15,6 +15,7 @@ from transformers import (
 )
 from transformers.tokenization_utils_fast import PreTrainedTokenizerFast
 from peft import get_peft_model
+from mimo_audio_train.arguments import CustomArguments
 
 from .src_mimo_audio.process_speechdata import InputSegment, StreamingInputSegment
 from .src_mimo_audio.mimo_audio_tokenizer import MiMoAudioTokenizer
@@ -75,6 +76,7 @@ class MimoAudioModel:
         self.eot_idx = self.tokenizer.convert_tokens_to_ids("<|eot|>")
         self.im_start_idx = self.tokenizer.convert_tokens_to_ids("<|im_start|>")
         self.im_end_idx = self.tokenizer.convert_tokens_to_ids("<|im_end|>")
+        self.speech_loss_weights = CustomArguments.speech_loss_weights
 
         model_args = MiMoAudioArguments(
             model_name_or_path=self.path,
@@ -84,6 +86,7 @@ class MimoAudioModel:
             sostm_idx=self.sostm_idx,
             eostm_idx=self.eostm_idx,
             eot_idx=self.eot_idx,
+            speech_loss_weights=self.speech_loss_weights,
         )
 
         start_loading_time = time.monotonic()
@@ -510,9 +513,9 @@ class MimoAudioModel:
         else:
             language = detect_language(input)
             if language == "zh":
-                template = "请将这段文字转换为语音："
+                template = "请将这段文字转换为语音"
             else:
-                template = "Please convert this text to speech."
+                template = "Please convert this text to speech"
 
             text = self.preprocess_input(input)
             if instruct is None:
@@ -1397,7 +1400,7 @@ class MimoAudioModel:
         add_history=False,
         task_name=None,
     ):
-        
+
         task_sampler = self.get_task_sampler(task_name)
         
         generation_kwargs = self.generate_kwargs.copy()
@@ -1485,7 +1488,7 @@ class MimoAudioModel:
             return detokenized_text
         else:
             return wav_concat
-  
+
     def asr_sft(self, audio, lang='zh'):
         stopping_criteria = [
             MiMoStopper(

@@ -70,6 +70,8 @@
 ]
 ```
 
+* Note: Change the user prompt from "Please convert this text to speech" to "请将这段文字转换为语音" when synthesizing Chinese text, to better align with the base model's training data.
+
 ### Instruct TTS
 
 ```
