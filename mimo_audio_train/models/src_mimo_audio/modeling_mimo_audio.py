@@ -486,7 +486,6 @@ class MiMoAudioForCausalLM(Qwen2PreTrainedModel):
             use_cache=True,
             return_dict=True,
             cache_position=cache_position,
-            is_causal=True,
         )
         hidden_states = outputs.last_hidden_state  # [B, new_T_group, hidden_size]
 
